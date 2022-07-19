@@ -1,30 +1,22 @@
-name: Cypress Regression Tests
+name: Running test project with cypress in CI
 
-on: [push]
+on:
+  push:
+      branches: [ master ]
+  pull_request:
+      branches: [ master ]
+      
+  schedule:
+    - cron: '* 8 1 * *'
 
 jobs:
-
-  ui-chrome-tests:
+  cypress-run:
     runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node14.17.0-chrome88-ff89
-      options: --user 1001
-    strategy:
-      fail-fast: false
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
-      - name: 'UI Tests - Chrome'
+
+      - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          install-command: yarn install
-          wait-on: ${{ secrets.BASE_URL }}
-          wait-on-timeout: 120
-          browser: chrome
-          record: true
-          group: 'UI - Chrome'
-          spec: cypress/integration/*
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          start: npm run test
