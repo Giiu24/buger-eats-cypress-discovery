@@ -1,12 +1,10 @@
-32 sloc)  907 Bytes
-
 name: Running test project with cypress in CI
 
 on:
   push:
-      branches: [ master ]
+      branches: [ main ]
   pull_request:
-      branches: [ master ]
+      branches: [ main ]
       
   schedule:
     - cron: '* 8 1 * *'
