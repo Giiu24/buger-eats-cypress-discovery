@@ -1,7 +1,7 @@
-import signup from '../../pages/SignupPage'
-import signupFactory from '../../factories/SignupFactory'
+import signup from '../pages/SignupPage'
+import signupFactory from '../factories/SignupFactory'
 // import { it } from 'faker/lib/locales'
-import SignupPage from '../../pages/SignupPage'
+import SignupPage from '../pages/SignupPage'
 
 describe('Signup', () => {
 
